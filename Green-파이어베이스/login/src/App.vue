@@ -12,7 +12,7 @@
           <v-list-item-title v-html="item.title"></v-list-item-title>
         </v-list-item>
       <!-- 로그인이 된 경우에만 로그아웃 버튼을 표시함 -->
-      <v-list-item v-if="login">
+      <v-list-item @click="fnDoLogout" v-if="fnGetAuthStatus">
         <v-list-item-action>
           <v-icon>mdi-arrow-right-bold-box-outline</v-icon>
         </v-list-item-action>
@@ -40,7 +40,7 @@
           {{item.title}}
         </v-btn>
         <!-- 로그인 된 경우에만 로그아웃 버튼을 표시 -->
-        <v-btn text v-if="login"> <!--검정인데 파랗게?됨...뭐지, v-if="login" true일때만(로그인상태일때만) 보이도록한다 -->
+        <v-btn @click="fnDoLogout" text v-if="fnGetAuthStatus"> <!--검정인데 파랗게?됨...뭐지, v-if="login" true일때만(로그인상태일때만) 보이도록한다 -->
           <v-icon left>mdi-arrow-right-bold-box-outline</v-icon>
           로그아웃
         </v-btn>
@@ -64,10 +64,14 @@ export default {
   data() {
     return {
       drawer : false, // 처음값은 false고, icon을 눌렀을때 true가 되도록하려고함 이부분 클릭했을대 -> <v-app-bar-nav-icon class="hidden-sm-and-up"><
-      login : false,
     }
   },
   computed : {
+    // 스토어에서 현재 인증상태인지 반환(로그인)
+    // data의 login : false 삭제하고 로그아웃버튼에 v-if="fnGetAuthStatus" 넣어줌
+    fnGetAuthStatus() {
+      return this.$store.getters.fnGetAuthStatus
+    },
     // 로그인 여부에 따라 다르게 탐색서랍과 툴바메뉴명의 항목을 배열로 반환
     fnGetMenuItems() { // fn의미 : 만들어준함수다 (안적어도됨)
       if(!this.login) { // 로그인을 하지 않았다면? 배열[ ]을 리턴해준다
@@ -83,6 +87,11 @@ export default {
           icon : 'mdi-account'
         }]
       }
+    },
+  },
+  methods : {
+    fnDoLogout() { // 클릭했을때 로그아웃되도록, 버튼에 추가
+      this.$store.dispatch('fnDoLogout')
     }
   }
   

@@ -23,7 +23,7 @@
                 이메일을 눌렀을때 이메일로그인으로 넘어가게한다(주소입력)
              -->
             <v-col cols="6" offset="3" class="text-center mt-5">  <!--offset으로 그리드 사이에 3개의 열 간격을 띄움 3/6/3 = 한줄12로 -->
-                <v-btn outlined color="red" large dark block>
+                <v-btn @click="fnDoGoogleLogin_Popup" outlined color="red" large dark block>
                     <v-icon>mdi-google</v-icon>
                     <v-title>구글 로그인</v-title>
                 </v-btn>
@@ -46,6 +46,13 @@ export default {
             loading : false,
 
         }
+    },
+    methods : {
+        fnDoGoogleLogin_Popup() {
+            // 스토어에 있는 구글계정 로그인 처리요청
+            this.$store.dispatch('fnDoGoogleLogin_Popup');
+        }
+        
     }
 }
 </script>

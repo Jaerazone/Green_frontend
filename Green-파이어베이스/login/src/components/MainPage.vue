@@ -9,10 +9,12 @@
         <v-row>
             <v-col cols="10" offset="1" sm="6" offset-sm="3" class="text-center mt-5">
                 <!-- 구글 로그인인 경우 사진 이미지 정보 표시 -->
-                <img src="" alt="" >
+                <!-- 그림은 있을수도 없을수도 있어서 v-if로 기재하려고함 -->
+                <!-- index.js에서 (1)로그인성공했을때 signInWithEmailAndPassword 여기서 가져온다-->
+                <img v-if="fnGetUser.photoURL" :src="fnGetUser.photoURL" class="avatar_style" alt="" >
                 <!-- 계정 이름과 이메일 표시 -->
-                <h3 class="pt-2 mt-4 grey lighten-2">이름</h3>
-                <p class="pb-2 grey lighten-2">이메일</p>
+                <h3 class="pt-2 mt-4 grey lighten-2">{{fnGetUser.name}}</h3>
+                <p class="pb-2 grey lighten-2">{{fnGetUser.email}}</p>
             </v-col>
             <v-col cols="6" offset="3"  class = "text-center mt-1" >
                 <v-btn color="amber" dark block>
@@ -26,10 +28,19 @@
 
 <script>
 export default {
-
+    computed : {
+        fnGetUser () { // 이걸 통해서 이름과 이메일을 표시하려고함
+            let oUserInfo = this.$store.getters.fnGetUser
+            return oUserInfo
+        }
+    }
 }
 </script>
 
-<style>
-
+<style scoped>
+    .avatar_style {
+        width : 100px;
+        height : 100px;
+        border-radius: 50%;
+    }
 </style>

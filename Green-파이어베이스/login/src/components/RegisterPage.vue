@@ -7,20 +7,29 @@
         </v-row>
         <v-row>
             <v-col class="text-center" cols="8" offset="2" sm ="6" offset-sm="3"> <!--sm 핸드폰화면일때-->
-                <form action="">
-                    <v-text-field name="Email" label="이메일" type="email" required></v-text-field> 
-                    <v-text-field name="Password" label="비밀번호" type="password" required></v-text-field>
+                <form @submit.prevent="fnRegisterUser">
+                    <v-text-field name="Email" label="이메일" type="email" 
+                    v-model="sEmail" required></v-text-field> 
+
+                    <v-text-field name="Password" label="비밀번호" type="password" 
+                    v-model="sPassword" required></v-text-field>
 
 
                     <!-- 비밀번호 확인 : rules 속성-->
+                    <!-- v-model에 들어온 sPassword과 
+                    이밑에 v-model로 들고온 sConfirmPassword 가 같으면
+                    rules로 v-model두개가 같은지 확인한다(computedㄱ ㄱ)
+                      -->
                     <v-text-field name="ConfirmPassword" label="비밀번호확인" type="password" required
-                    :rules="['비밀번호가일치하지않습니다']">
+                    v-model = "sConfirmPassword"
+                    :rules="['fnComparePassword']">
+
                 <!-- 글자나 문자열이 들어가게되면 안에 넣어준 글자를 출력하고
                 :rules="[true]" -> true를 넣어주면참이라고 판단함 -->
                     </v-text-field>
 
-
-                    <v-btn color="amber" dark v-if="!loading">로그인</v-btn> <br>
+                    <!-- form에 속해진 값으로 넣기 위해 버튼타입을 submit으로 변경함 위 <form 태그에 submit연결> -->
+                    <v-btn type="submit" color="amber" dark v-if="!loading">로그인</v-btn> <br>
 
 
                     <!-- 시간지연의 경우 회전 프로그레스 원 표시 -->
@@ -45,7 +54,28 @@
 export default {
     data() {
         return {
-            loading : false
+            loading : false,
+            sEmail : '',
+            sPassword : '',
+            sConfirmPassword : '',
+        }
+    },
+    computed : {
+        fnComparePassword() {
+            if(this.sPassword == this.sConfirmPassword) {
+                return true
+            } else return '비밀번호가 일치하지않습니다'
+        }
+    },
+    // 회원가입 버튼을 눌렀을 때 실행되는 메서드
+    methods : {
+        fnRegisterUser() {
+           if(this.fnComparePassword == true) {
+               this.$store.dispatch('fnRegisterUser', {
+                   pEmail : this.sEmail,
+                   pPassword : this.sPassword
+               })
+           }
         }
     }
 }

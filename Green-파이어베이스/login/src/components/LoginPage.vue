@@ -7,11 +7,13 @@
         </v-row>
         <v-row>
             <v-col class="text-center" cols="8" offset="2" sm ="6" offset-sm="3"> <!--sm 핸드폰화면일때-->
-                <form action="">
-                    <v-text-field name="Email" label="이메일" type="email" required></v-text-field> 
+                <form @submit.prevent="DoLogin">
+                    <v-text-field name="Email" label="이메일" type="email" 
+                    v-model="sEmail" required></v-text-field> 
                     <!-- required : 이메일의 규정에 맞지않거나 칸이 비워져있으면 form버튼 다음으로 못넘어가게한다 -->
-                    <v-text-field name="Password" label="비밀번호" type="password" required></v-text-field>
-                    <v-btn color="amber" dark v-if="!loading">로그인</v-btn> <br>
+                    <v-text-field name="Password" label="비밀번호" type="password" 
+                    v-model="sPassword" required></v-text-field>
+                    <v-btn type="submit" color="amber" dark v-if="!loading">로그인</v-btn> <br>
 
 
                     <!-- 시간지연의 경우 회전 프로그레스 원 표시 -->
@@ -37,7 +39,17 @@ export default {
     data() {
         return {
             loading : false,
+            sEmail : '',
+            sPassword : '',
 
+        }
+    },
+    methods : { // 클릭했을때 전달할 메소드
+        DoLogin() {
+            this.$store.dispatch('DoLogin', {
+                pEmail : this.sEmail,
+                pPassword : this.sPassword
+            })
         }
     }
 }
