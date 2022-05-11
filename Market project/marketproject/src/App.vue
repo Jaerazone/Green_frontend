@@ -26,6 +26,8 @@
         <ul class="naver__etc">
             <li class="naver__etc__item naver__etc__sign"><router-link to="/sign">회원가입</router-link></li>
             <li class="naver__etc__item naver__etc__login"><router-link to="/login">로그인</router-link></li>
+            <li class="naver__etc__item naver__etc__order"><router-link to="/order">장바구니</router-link></li>
+        
         </ul>
 
         <!-- Toggle button -->

@@ -3,7 +3,7 @@
         <section id="singupPage" class="section">
             <div id="section__container">
                 <h1>회원가입</h1>
-                <p><span class="import_start">*</span>필수입력사항</p>
+                <p><span class="import__start">*</span>필수입력사항</p>
 
 
                 <form action="" class="sing__form">
@@ -11,9 +11,9 @@
                     <input id="아이디" type="text" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"><button @click.prevent>중복확인</button><br>
                     
                     <label for="비밀번호">비밀번호<span class="import_start">*</span></label>
-                    <input id="비밀번호" type="text" placeholder="비밀번호를 입력해주세요"><br>
+                    <input id="비밀번호" type="password" placeholder="비밀번호를 입력해주세요"><br>
                     <label for="비밀번호확인">비밀번호확인<span class="import_start">*</span></label>
-                    <input id="비밀번호확인" type="text" placeholder="비밀번호를 한번 더 입력해주세요"><br>
+                    <input id="비밀번호확인" type="password" placeholder="비밀번호를 한번 더 입력해주세요"><br>
                     
                     <label for="이름">이름<span class="import_start">*</span></label>
                     <input id="이름" type="text" placeholder="이름을 입력해주세요"><br>
@@ -56,7 +56,7 @@ export default {
 
 <style scoped>
 
-.import_start {
+.import__start {
     color: red;
 }
 </style>
