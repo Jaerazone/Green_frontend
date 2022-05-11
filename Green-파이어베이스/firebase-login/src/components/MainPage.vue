@@ -10,6 +10,7 @@
         <img v-if="fnGetUser.photoURL" :src="fnGetUser.photoURL" alt="">
         <h3>{{fnGetUser.name}}</h3>
         <p>{{fnGetUser.email}}</p>
+
     </div>
 </template>
 
