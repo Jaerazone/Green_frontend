@@ -24,10 +24,19 @@
         </ul>
 
         <ul class="naver__etc">
-            <li class="naver__etc__item naver__etc__sign"><router-link to="/sign">회원가입</router-link></li>
-            <li class="naver__etc__item naver__etc__login"><router-link to="/login">로그인</router-link></li>
-            <li class="naver__etc__item naver__etc__order"><router-link to="/order">장바구니</router-link></li>
-        
+            <div v-if="!fnGetAuthStatus">
+                <li class="naver__etc__item naver__etc__login"><router-link to="/login">로그인</router-link></li>
+                <li class="naver__etc__item naver__etc__sign"><router-link to="/sign">회원가입</router-link></li>
+            </div>
+            <div v-else>
+                <li>
+                    <img v-if="fnGetUser.photoURL" :src="fnGetUser.photoURL" alt="">
+                    <p v-if="fnGetUser.name">{{fnGetUser.name}}님 환영합니다</p>
+                    <p v-else>{{fnGetUser.email}}님 환영합니다</p>
+                </li>
+                <li class="naver__etc__item naver__etc__order"><router-link to="/order">장바구니</router-link></li>
+                <li class="naver__etc__item naver__etc__order" @click="fnSignOut">로그아웃</li>
+            </div>
         </ul>
 
         <!-- Toggle button -->
@@ -42,22 +51,25 @@
 </template>
 
 <script>
-// import MainPage from './components/MainPage.vue';
-// import NewproductPage from './components/NewproductPage.vue';
-// import HitproductPage from './components/HitproductPage.vue';
-// import DeadlinePage from './components/DeadlinePage.vue';
-
 
 export default {
   name : 'App',
-  components : {
-    // MainPage,
-    // NewproductPage,
-    // HitproductPage,
-    // DeadlinePage,
-    
-  },
+  components : {},
+  computed : {
+      fnGetAuthStatus() { // nav바 사용자 인증
+        return this.$store.getters.fnGetAuthStatus
+      },
+      fnGetUser() {
+            let oUserInfo = this.$store.getters.fnGetUser
+            return oUserInfo
+      },
 
+  },
+    methods : {
+        fnSignOut() {
+            this.$store.dispatch('fnSignOut')
+        }
+    }
 }
 </script>
 
