@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+
+  <!-- Rating state start -->
+
+  <div class="ratingState_container" id="ratingState_container" style="display: block;">
+
+    <img class="star" src="/images/icon-star.svg" alt="">
+
+    <h2>How did we do?</h2>
+    
+    <p>Please let us know how we did with your support request. All feedback is appreciated 
+      to help us improve our offering!</p>
+    
+    <div class="ratingScore_container">
+      <form action="">
+        <ul >
+          <li onclick="textChange(this.id)" id="1">1</li>
+          <li onclick="textChange(this.id)" id="2">2</li>
+          <li onclick="textChange(this.id)" id="3">3</li>
+          <li onclick="textChange(this.id)" id="4">4</li>
+          <li onclick="textChange(this.id)" id="5">5</li>
+        </ul>
+        <input onclick="cssChange()" type="button" value="SUBMIT">
+      </form>
+      
+    </div>
+
+  </div>
+
+  <!-- Rating state end -->
+
+  <!-- Thank you state start -->
+  <div class="thankYou_container" id="thankYou_container" style="display: none;">
+    
+    <img class="phone" src="/images/illustration-thank-you.svg" alt=""> <br>
+
+    <p class="select__box">You selected <span id="rating">평점</span> out of 5</p>
+    
+
+    <h1>Thank you!</h1>
+
+    <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+    don’t hesitate to get in touch!</p>
+
+  </div>
+  <!-- Thank you state end -->
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+
+  <script>
+
+    const ul = document.querySelector('ul');
+    const li = document.querySelectorAll('li');
+    const input = document.querySelector('input');
+    const rating = document.getElementById('rating');
+
+function textChange(id) {
+  console.log('id:', id);
+    rating.innerText = id;
+  }
+
+
+
+
+
+  function cssChange() {
+    document.getElementById('ratingState_container').style.display= "none";
+    document.getElementById('thankYou_container').style.display = "block";
+
+    //document.getElementsByClassName('.ratingState_container').style.display= "none";
+    //document.getElementsByClassName('.thankYou_container').style.display = "block";
+
+    // document.getElementsByClassName('ratingState_container')[0].style.display= "none";
+    // document.getElementsByClassName('thankYou_container')[0].style.display = "block";
+    // getElementsByClassName은 전체 HTML 문서를 검색하고
+    // 이 함수의 매개 변수에 전달 된 클래스 이름을 가진 모든 HTML 요소의 배열을 반환
+    // 배열을 반환하기 때문에 [0] 인덱스 꼭 넣어줘야한다
+
+
+  }
+
+
+
+    /*
+사용자는 다음을 수행할 수 있어야 합니다.
+
+- 기기의 화면 크기에 따른 최적의 앱 레이아웃 보기
+- 페이지의 모든 대화형 요소에 대한 호버 상태 보기
+- 숫자 등급 선택 및 제출
+- 평가 제출 후 "감사합니다" 카드 상태 확인
+
+*/
+
+
+  </script>
+
+
+
+</body>
+</html>

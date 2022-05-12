@@ -1,0 +1,104 @@
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+.attribution a {
+    color: hsl(228, 45%, 44%); 
+}
+
+* {
+    font-family: Overpass;
+
+}
+
+.ratingState_container, .thankYou_container {
+    width: 400px;
+    height: 350px;
+    background-color: hsl(213, 19%, 18%);
+    border-radius: 20px;
+    padding: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.star {
+    background-color: hsl(213, 19%, 25%);
+    padding: 15px;
+    border-radius: 50%;    
+}
+
+h2 { color : white; }
+p, li { color : hsl(217, 12%, 63%); }
+ul { 
+    padding: 0;
+    display: flex;
+    margin: 25px 0;
+}
+
+li {
+    list-style-type: none;
+    background-color: hsl(213, 19%, 25%);
+    text-align: center;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    margin: auto;
+    line-height: 46px;
+
+}
+
+li:hover {
+    background-color: hsl(216, 12%, 54%);
+    color : hsl(0, 0%, 100%);
+}
+
+input {
+    background-color : hsl(25, 97%, 53%);
+    color : white;
+    border: none;
+    width: 360px;
+    border-radius: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 100px;
+    letter-spacing: 2px;
+    font-size: 15px;
+    
+}
+
+input:hover {
+    background-color:  hsl(0, 0%, 100%);
+    color : hsl(25, 97%, 53%);
+}
+
+
+
+.phone {
+    display: block;
+    margin: auto;
+}
+
+.select__box {
+    color : hsl(25, 97%, 53%);
+    background-color: hsl(213, 19%, 25%);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    letter-spacing: 1px;
+    width: 220px;
+
+}
+
+h1 {
+    text-align: center;
+    color :hsl(0, 0%, 100%);
+}
+p { 
+    text-align: center;
+    padding : 0 20px;
+}
