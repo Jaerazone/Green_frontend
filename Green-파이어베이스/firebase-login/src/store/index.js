@@ -11,7 +11,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup, 
-  GoogleAuthProvider
+  GoogleAuthProvider,
+  signOut,
+  deleteUser,
+
  }  from "firebase/auth";
 
 import router from '@/router'; // router.push('/') 이거 작성하면 저절로 생기나봄
@@ -59,6 +62,8 @@ export default new Vuex.Store({
 
     //1-6) 파이어베이스의 인증을 이용하여 이메일 회원 로그인 (이메일주소와 비밀번호로 사용자 로그인 처리)
     DoLogin( {commit} , payload) {
+      // 서버측 주소 (axios비동기로 > 값을 전달하기위해 POST씀, payload 값을 전달하고 > .then을 통해 그 값을 commit에 저장함)
+      // express설치하고 - 서버측에 firebase 설치해서 진행하면된다
       signInWithEmailAndPassword(auth, payload.pEmail, payload.pPassword)
       .then((pUserInfo) => {
         commit('fnSetUser', { // commit을 통해 받아온 정보를 저장해 준다
@@ -99,7 +104,33 @@ export default new Vuex.Store({
       .catch((err) => {
         console.log(err.message);
       }); // ->1-10) App.vue 라우터설정
+    },
+    
+    // 로그아웃
+    fnDoLogout({commit}) {
+      signOut(auth)
+      .then(()=> {
+        commit('fnSetUser', null);
+        router.push('/');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });  
+    },
+
+    // 회원탈퇴
+    fnDoDelete({commit}) {
+      const user = auth.currentUser;
+      deleteUser(user)
+      .then(() => {
+        commit('fnSetUser', null)
+        router.push('/');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
     }
+
   },
   modules: {
   }

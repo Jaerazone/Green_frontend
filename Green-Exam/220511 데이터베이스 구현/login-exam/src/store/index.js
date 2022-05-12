@@ -11,6 +11,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  signOut,
+  deleteUser,
     
  } from "firebase/auth";
 import router from '@/router';
@@ -102,6 +104,31 @@ export default new Vuex.Store({
       .catch( (err) => {
         console.log(err.message);
       })
+    },
+
+    // 로그아웃
+    fnDoLogout({commit}) {
+      signOut(auth)
+      .then(()=> {
+        commit('fnSetUser', null);
+        router.push('/');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });  
+    },
+
+    // 회원탈퇴
+    fnDoDelete({commit}) {
+      const user = auth.currentUser;
+      deleteUser(user)
+      .then(() => {
+        commit('fnSetUser', null)
+        router.push('/');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
     }
   },
   modules: {

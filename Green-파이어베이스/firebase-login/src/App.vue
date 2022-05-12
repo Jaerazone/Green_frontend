@@ -7,8 +7,8 @@
     </nav>
     <nav v-else>
       <router-link to="/">Home</router-link> |
-      <a>로그아웃</a> |
-      <a>회원탈퇴</a>
+      <a @click="fnDoLogout">로그아웃</a> |
+      <a @click="fnDoDelete">회원탈퇴</a>
     </nav>
     <!-- 1-9) ->StartPage.vue 생성 -->
     <router-view/>
@@ -20,6 +20,14 @@ export default { // 1-11)
   computed : {
     fnGetAuthStatus() {
       return this.$store.getters.fnGetAuthStatus
+    },
+  },
+    methods: {
+    fnDoLogout() {
+      this.$store.dispatch('fnDoLogout');
+    },
+    fnDoDelete() {
+      this.$store.dispatch('fnDoDelete');
     },
   }
   
