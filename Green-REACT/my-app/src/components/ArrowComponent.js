@@ -14,6 +14,7 @@ const ArrowComponent = (props) => {
         <p> {name} </p>
         <h2 style = { {color : 'red' } }>화살표 함수로 만든 컴포넌트입니다</h2>
         </div>
+        
  };
  
  // App.js에서 값을 적어주지 않으면 
@@ -21,7 +22,7 @@ const ArrowComponent = (props) => {
  ArrowComponent.defaultProps = {
      name : '기본이름',
  } 
-ArrowComponent.propTypes = {
+ArrowComponent.propTypes = { // 자료형을 정해주고싶을때
     name : PropTypes.string
 }
  export default ArrowComponent;

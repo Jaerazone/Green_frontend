@@ -10,6 +10,8 @@ import MyLogin from './components/MyLogin'
 import ArrowLogin from './components/ArrowLogin'
 
 import StateComponent from './components/StateComponent'
+
+import ArrowState from './components/ArrowState'
 // 함수형 컴포넌트
 function App() {
   const login = true;
@@ -40,6 +42,7 @@ function App() {
 
         <StateComponent />
 
+        <ArrowState />
       </header>
 
       {
