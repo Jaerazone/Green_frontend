@@ -26,7 +26,8 @@ class InputClass extends Component {
     alertOpen() {
         alert(`message : ${this.state.message} 와 user : ${this.state.user} `);
     }
-    // 화살표 함수로 작성할 시 bind로 this를 연결해주지 않아도된다 (this값이 없음..?!)
+    // 화살표 함수로 작성할 시 bind로 this를 연결해주지 않아도된다 
+    // (this값이 지정되어있지 않아서 이함수가 불리는 곳을 this라 칭함)
     showMessage = () => {
         alert(`message : ${this.state.message} , state: ${this.state.user} `);
     }
