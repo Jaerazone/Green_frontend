@@ -51,6 +51,8 @@ class MemoClass extends Component {
                     <ul>
                         {listMemo}                    
                     </ul>
+                    <div></div>
+
                 </div>
             </div>
         );
