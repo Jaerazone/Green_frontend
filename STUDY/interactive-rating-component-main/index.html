@@ -27,11 +27,11 @@
     <div class="ratingScore_container">
       <form action="">
         <ul >
-          <li id="1">1</li>
-          <li id="2">2</li>
-          <li id="3">3</li>
-          <li id="4">4</li>
-          <li id="5">5</li>
+          <li onclick="textChange(this.id)" id="1">1</li>
+          <li onclick="textChange(this.id)" id="2">2</li>
+          <li onclick="textChange(this.id)" id="3">3</li>
+          <li onclick="textChange(this.id)" id="4">4</li>
+          <li onclick="textChange(this.id)" id="5">5</li>
         </ul>
         <input onclick="cssChange()" type="button" value="SUBMIT">
       </form>
@@ -69,21 +69,17 @@
 
     const ul = document.querySelector('ul');
     const li = document.querySelectorAll('li');
-    // querySelector 으로 하면 제일 첫번째 li가 선택됨
-    // querySelectorAll 은 에러남...
     const input = document.querySelector('input');
     const rating = document.getElementById('rating');
 
-// function textChange(id) {
-//   console.log('id:', id);
-//     rating.innerText = id;
-//   }
-    li.addEventListener("click", function(e) {
-      console.log(e.target.textContent);
-      rating.innerText = e.target.textContent;
-    })
+function textChange(id) {
+  console.log('id:', id);
+    rating.innerText = id;
+  }
 
-  
+
+
+
 
   function cssChange() {
     document.getElementById('ratingState_container').style.display= "none";
