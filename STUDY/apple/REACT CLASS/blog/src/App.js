@@ -30,21 +30,20 @@ function App() {
       </div>
       {/* <button onClick={ 제목바꾸기 }>제목바꾸기버튼</button> */}
       {/* <button onClick={ 순서바꾸기 }>순서바꾸기버튼</button> */}
-      <div className="list">
-      <h4> { 글제목[0] } <span onClick={ ()=>{ 따봉변경(따봉+1) } } >👍</span> {따봉} </h4>
-        <p>2월 17일 발행</p>
-        <hr />        
-      </div>
-      <div className="list">
-      <h4> { 글제목[1] } </h4>
-        <p>2월 17일 발행</p>
-        <hr />        
-      </div>
-      <div className="list">
-      <h4> { 글제목[2] } </h4>
-        <p>2월 17일 발행</p>
-        <hr /> 
-      </div>
+
+
+      {
+        글제목.map(function(글){
+          return (
+            <div className="list">
+            <h4> { 글 }  <span onClick={ ()=>{ 따봉변경(따봉+1) } } >👍</span> {따봉}   </h4>
+              <p>2월 17일 발행</p>
+              <hr /> 
+            </div>
+          )
+        })
+      }
+      
 
       <button onClick={ ()=>{ modal변경(!modal) } }> 열고닫는버튼 </button>
         {
