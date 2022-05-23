@@ -6,6 +6,27 @@ body {
   font-family: 'nanumsquare';
 }
 
+.publish {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.publish input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 80%;
+  border: 1px solid rgb(128, 0, 128);
+}
+.publish button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid purple;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .black-nav {
   background : black;
   width : 100%;
