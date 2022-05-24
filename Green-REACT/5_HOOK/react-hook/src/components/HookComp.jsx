@@ -13,6 +13,8 @@ const HookComp = () => {
     // 와 동일하게 사용한다
     useEffect(() => {
         //// componentDidMount, componentDidUpdate 와 동일하게 움직임
+        // 동시에 적어도되고,
+        // 각각 받고싶으면 인수를 2개 적음
         document.title = count;
         console.log(count);
         //componentWillUnmount 와 동일한 역할
