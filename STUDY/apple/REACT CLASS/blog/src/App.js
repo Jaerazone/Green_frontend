@@ -12,12 +12,13 @@ function App() {
   let [입력값, 입력값변경] = useState([]);
   
 
-  const addMemo = () => {
+  // const addMemo = () => {
 
-    const 새로운글제목 = 글제목.concat([입력값])
-    글제목변경(새로운글제목)
-    console.log(새로운글제목)
-  }
+  //   const 새로운글제목 = 글제목.concat([입력값])
+  //   글제목변경(새로운글제목)
+  //   console.log(새로운글제목)
+  // }
+
 
   return (
     <div className="App">
@@ -35,14 +36,19 @@ function App() {
           )
         })
       }
-
+      
       <div className='publish'>
         {입력값}
         <input type="text"  onChange={ (e) =>{입력값변경(e.target.value)} } />
-        <button onClick={ ()=>{addMemo()} }>전송</button>
+        {/* <button onClick={ ()=>{addMemo()} }>전송</button> */}
+        <button onClick={ ()=>{
+          const arrayCopy = [...글제목];
+          arrayCopy.unshift(입력값);
+          글제목변경(arrayCopy);
+        } }>전송</button>
       </div>
 
-
+      <Profile />
 
       <button onClick={ ()=>{ modal변경(!modal) } }> 열고닫는버튼 </button>
         {
@@ -64,5 +70,29 @@ function Modal(props){
     </div>
   )
 }
+
+
+class Profile extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = { name : 'Kim', age : 30 }
+  }
+
+  changeName = () => { 
+    this.setState( {name : 'Park'} )
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>프로필입니다</h3>
+        <p>저는 {this.state.name} 입니다</p>
+        <button onClick={ this.changeName } >버튼</button>
+      </div>
+    )
+  }
+}
+
+
 
 export default App;
