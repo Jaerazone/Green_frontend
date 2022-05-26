@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+}
+
+.jumbo__container{
+  background-image: url('./background.jpg');
+  background-size: cover;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}

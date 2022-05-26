@@ -7,18 +7,37 @@ import ExReducer from './components/ExReducer'
 import MemoHook from './components/MemoHook'
 
 import React from 'react';
+import { ThemeContext } from "./components/ThemeContext";
+import ContextHook from "./components/ContextHook";
+import DispatchContext from './components/DispatchContext'
 
-export const ThemeContext = React.createContext('light');
+function reducer(state, action) {
+  // 여러가지 값을 적기위해 switch 사용
+  switch (action.type) {
+      case 'id_plus':
+          return {id : state.id+1};
+      case 'text_chage':
+          return {text : action.payload};
+  }
+}
 
 function App() {
-
+  const [state, dispatch] = useReducer(reducer, [{ id : 1, text : 'reducer의 텍스트입니다'}])
+  
   return (
     <div className="App">
       <header className="App-header">
 
-        <ThemeContext.Provider value="dark">
-        <ContextHook />
+        <ThemeContext.Provider value={{id:0, text:"객체형식입니다"}}>
+        {/* <ThemeContext.Provider value={0}> */}
+          <ContextHook />
         </ThemeContext.Provider>
+
+        <DispatchContext.Consumer>
+          { (vlaue) => <button> {vlaue} </button> }
+        </DispatchContext.Consumer>
+
+        
         
 
         <MemoHook />
