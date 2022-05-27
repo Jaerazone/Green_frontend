@@ -11,6 +11,7 @@ import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import
 import {faCamera} from  '@fortawesome/free-solid-svg-icons' 
 import TestComp from './components/TestComp';
 
+import StyleComp from './components/StyleComp'
 
 function App() {
   const gridStyle = {
@@ -18,7 +19,7 @@ function App() {
   }
   return (
     <div className="App">
-      
+
         <Button variant="primary" onClick={()=>{alert('눌렀습니다')}}>Primary</Button>
         <Container style={gridStyle}>
           <Row>
@@ -45,8 +46,15 @@ function App() {
             
             <button className='MyButton'>버튼</button>
             {/* test.scss 파일이 전역으로 되어있어서 전부다 적용됨 */}
+
+            <h1>💛styled-components 연습</h1>
+            <StyleComp primary></StyleComp>
+
             </Col>
           </Row>
+
+          
+
         </Container>
     </div>
   );
