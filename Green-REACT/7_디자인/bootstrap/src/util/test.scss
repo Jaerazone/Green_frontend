@@ -1,0 +1,88 @@
+/*
+    * npm install sass 를 통해 프로젝트에 설치
+    * .scss 이름으로 원하는 파일 생성
+
+    * sass의 특징 : css에 변수를 추가해서 사용할 수 있다
+    * react 컴포넌트와 함께 사용 : 특정 디자인이 된 컴포넌트
+*/
+
+$orange :  #ff7f00 ;
+$blue : #2288eb;
+$pink : #ee45ad;
+$grey : #646464;
+
+@mixin button-color($color) { // $color 라는 가상의 매개변수값을 지정
+    background-color: $color;
+
+    // & 는 자기자신
+    &:hover {  // lighten을 통해 색 밝기 조절가능
+        background-color: lighten($color, 5%);
+    }
+    &:active { // darken을 통해 색 어둡기 조절가능
+        background-color: darken($color, 5%);
+    }
+
+    // 본인 안에서 클래스 추가 사용 (클래스 2개사용)
+    // 본인과 .large 클래스 동시에 부르는거
+    &.large {
+        height: 3rem;
+        padding: 0 3rem;
+        font-size: 1.25rem;
+        line-height: 48px;
+        
+    }
+}
+
+
+.MyButton {
+    display: inline-flex;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    height: 2.25rem; // 
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
+    line-height: 36px;
+
+    background-color: $orange;
+
+    // 본인 안에서 클래스 추가 사용 (클래스 2개사용)
+    // 본인과 .large 클래스 동시에 부르는거
+    &.large {
+        height: 3rem;
+        padding: 0 3rem;
+        font-size: 1.25rem;
+        line-height: 48px;
+    }
+
+    // 색상관리
+    &.orange {
+        @include button-color($orange);
+    }
+
+    &.blue {
+        @include button-color($blue);
+    }
+    &.pink {
+        @include button-color($pink);
+    }
+    &.grey {
+        @include button-color($grey);
+    }
+
+    // // & 는 자기자신
+    // &:hover {  // lighten을 통해 색 밝기 조절가능
+    //     background-color: lighten($orange, 5%);
+    // }
+    // &:active { // darken을 통해 색 어둡기 조절가능
+    //     background-color: darken($orange, 5%);
+    // }
+
+}
