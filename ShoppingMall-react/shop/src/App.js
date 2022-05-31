@@ -1,7 +1,14 @@
+/*eslint-disable*/ 
 import "./App.css";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import {useState} from 'react'
+import Data from './data'
+import {Routes, Route, Link} from 'react-router-dom';
 
 function App() {
+
+    const [shoes, setShoes] = useState(Data);
+
     return (
         <div className="App">
             <Navbar bg="light" expand="lg">
@@ -35,6 +42,14 @@ function App() {
                 </Container>
             </Navbar>
 
+            <Link to='/'>홈</Link>
+            <Link to='/detail'>상세페이지</Link>
+
+            <Routes>
+                <Route path='/' element={<div>메인페이지</div>} />
+                <Route path='/detail' element={<div>상세페이지</div>} />
+            </Routes>
+
             <div className="jumbo__container">
                 <h1> 20% Season Off </h1>
                 <p>
@@ -51,31 +66,27 @@ function App() {
 
             <div className="container">
                 <div className="row">
-                    <div className="col-md-4">
-                        <img
-                            src="https://codingapple1.github.io/shop/shoes1.jpg"
-                            alt="신발1"
-                            width="100%"
-                        />
-                    </div>
-                    <div className="col-md-4">
-                        <img
-                            src="https://codingapple1.github.io/shop/shoes2.jpg"
-                            alt="신발2"
-                            width="100%"
-                        />
-                    </div>
-                    <div className="col-md-4">
-                        <img
-                            src="https://codingapple1.github.io/shop/shoes3.jpg"
-                            alt="신발3"
-                            width="100%"
-                        />
-                    </div>
+                    {
+                        shoes.map((ssss,i) => (
+                            <Card key={i} sh={shoes[i]} />
+                        ))
+                    }
                 </div>
             </div>
         </div>
     );
 }
+
+function Card(props) {
+    return (
+      <div className="col-md-4">
+        <img src={`https://codingapple1.github.io/shop/shoes${props.sh.id+1}.jpg`} width="100%" />
+        <h4>{props.sh.title}</h4>
+        <p>
+          {props.sh.content} & {props.sh.price}
+        </p>
+      </div>
+    );
+};
 
 export default App;
