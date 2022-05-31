@@ -31,6 +31,7 @@ const Profile = () => {
                     <div>
                         <p>파람 username: {params.username}</p>
                         <p>프로필 name: {profile.name}</p>
+                        <p> ㅎㅎ {data[params.username][name]}</p>
                         <p>프로필 adress: {profile.adress}</p>
                     </div>
                 ) : (
