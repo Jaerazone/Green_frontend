@@ -249,7 +249,7 @@
                             <a href="#">
                                 <img src="@/assets/인기상품_img/크러핀.png" alt="">
                                 <div class="new-text-wrap">
-                                    <h2>오르랔베이커리 크러핀 4종</h2>
+                                    <h2>오르락베이커리 크러핀 4종</h2>
                                     <p>4,300원</p>
                                 </div>
                             </a>

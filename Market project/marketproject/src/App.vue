@@ -28,12 +28,13 @@
                 <li class="naver__etc__item naver__etc__login"><router-link to="/login">로그인</router-link></li>
                 <li class="naver__etc__item naver__etc__sign"><router-link to="/sign">회원가입</router-link></li>
             </div>
-            <div v-else>
+            <div class="naver__etc__logintrue" v-else>
                 <li>
                     <img v-if="fnGetUser.photoURL" :src="fnGetUser.photoURL" alt="">
-                    <p v-if="fnGetUser.name">{{fnGetUser.name}}님 환영합니다</p>
+                    <p v-if="fnGetUser.name">{{fnGetUser.name}}</p>
                     <p v-else>{{fnGetUser.email}}님 환영합니다</p>
                 </li>
+                
                 <li class="naver__etc__item naver__etc__order"><router-link to="/order">장바구니</router-link></li>
                 <li class="naver__etc__item naver__etc__order" @click="fnSignOut">로그아웃</li>
             </div>
@@ -160,8 +161,8 @@ export default {
 
 .swiper-button-next,
 .swiper-button-prev {
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(3px);
     background-size: 18px;
@@ -249,6 +250,7 @@ export default {
 
     /* Animation */
     --animation-duration: 0.3s;
+
 }
 
 /* Universal tags */
@@ -320,7 +322,7 @@ html{   /* 네브바 클릭시 부드럽게 이동 */
     z-index: 5;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     color: var(--color-white);
     padding: 5px;
@@ -332,7 +334,13 @@ html{   /* 네브바 클릭시 부드럽게 이동 */
 }
 
 .naver__etc {
-    display: flex;
+    width: 190px;
+    padding: 0;
+    
+}
+
+.naver__etc__item {
+    display: inline-flex;
 }
 
 .navber__logo {
@@ -341,7 +349,7 @@ html{   /* 네브바 클릭시 부드럽게 이동 */
 }
 
 .navber__logo img {
-    width: 60%;
+    width: 80%;
 }
 
 .navber__menu__item, .naver__etc__item{
@@ -349,6 +357,7 @@ html{   /* 네브바 클릭시 부드럽게 이동 */
     margin: 0 4px;
     cursor: pointer;
     border-radius: var(--size--border--radius);
+    text-align: center;
 }
 
 .navber__menu__item.active {
@@ -358,6 +367,29 @@ html{   /* 네브바 클릭시 부드럽게 이동 */
 .navber__menu__item:hover , .naver__etc__item:hover{
     background-color: var(--color-dark-purple);
 }
+.naver__etc img {
+    width: 30px;
+    float: left;
+    border-radius: 50%;
+}
+.naver__etc p {
+    font-size: 12px;
+    float: left;
+    padding-left: 6px;
+    font-weight: bold;
+}
+.naver__etc__logintrue {
+    width: 300px;
+    display: flex;
+}
+.naver__etc__logintrue p {
+    margin: 0;
+    line-height: 37px;
+}
+
+
+
+
 /* Toggle button */
 .navbar__toggle-btn {
     position: absolute;
@@ -560,6 +592,8 @@ html{   /* 네브바 클릭시 부드럽게 이동 */
     #navber {
         flex-direction: column;
         align-items: flex-start;
+        height: 69px;
+        
     }
 
     .navber__menu, .naver__etc {

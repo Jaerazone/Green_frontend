@@ -57,7 +57,7 @@ export default {
          showRemaining() {
              const timer = setInterval(() => {
                  const now = new Date();
-                 const end = new Date(2022, 4, 14, 24, 0, 0);
+                 const end = new Date(now.getFullYear(), now.getMonth(), now.getDate()+31, 24, 0, 0);
                  const distance = end.getTime() - now.getTime();
 
                 if(distance < 0) {
