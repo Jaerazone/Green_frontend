@@ -41,8 +41,8 @@ const DetailPage = (props) => {
 
   const { id } = useParams();
   console.log(id);
-  const shoesItem = props.shoes.find((item) => item.id == id);
-  console.log(shoesItem);
+  const foodItem = props.food.find((item) => item.id == id);
+  console.log(foodItem);
 
   return (
     <div>
@@ -69,20 +69,20 @@ const DetailPage = (props) => {
         <div className="row">
           <div className="col-md-6">
             <img
-              src={require(`../img/food${shoesItem.id + 1}.jpg`)}
+              src={require(`../img/food${foodItem.id + 1}.jpg`)}
               alt=""
               width="50%"
             />
           </div>
           <div className="col-md-6">
-            <h4 className="pt-5">{shoesItem.title}</h4>
-            <p>{shoesItem.content}</p>
+            <h4 className="pt-5">{foodItem.title}</h4>
+            <p>{foodItem.content}</p>
             <p>
-              {shoesItem.price}원
+              {foodItem.price}원
               {isNaN(inputtext) == true ? (
                 <p>숫자만 입력해주세요</p>
               ) : (
-                `* ${inputtext} 개 = 총 ${shoesItem.price * inputtext}원`
+                `* ${inputtext} 개 = 총 ${foodItem.price * inputtext}원`
               )}
             </p>
             <br />

@@ -5,9 +5,10 @@ import { useState } from "react";
 import Data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import DetailPage from "./components/DetailPage";
+import axios from "axios";
 
 function App() {
-  const [shoes, setShoes] = useState(Data);
+  const [food, setFood] = useState(Data);
   const navigate = useNavigate();
 
   return (
@@ -72,15 +73,32 @@ function App() {
 
               <div className="container">
                 <div className="row">
-                  {shoes.map((ssss, i) => (
-                    <Card key={i} sh={shoes[i]} />
+                  {food.map((ssss, i) => (
+                    <Card key={i} sh={food[i]} />
                   ))}
                 </div>
               </div>
+              <button
+                onClick={() => {
+                  axios
+                    .get(
+                      "https://github.com/Jaerazone/dogfoodJson.git/shop/data2.json"
+                    )
+                    .then((결과) => {
+                      console.log(결과.data);
+                      setFood([...food, 결과.data]);
+                    })
+                    .catch(() => {
+                      console.log("실패했습니다");
+                    });
+                }}
+              >
+                버튼
+              </button>
             </>
           }
         />
-        <Route path="/detail/:id" element={<DetailPage shoes={shoes} />} />
+        <Route path="/detail/:id" element={<DetailPage food={food} />} />
         <Route path="*" element={<>없는페이지에요</>} />
 
         <Route path="/about" element={<About />}>
