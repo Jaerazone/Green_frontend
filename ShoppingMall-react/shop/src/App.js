@@ -82,11 +82,10 @@ function App() {
                 onClick={() => {
                   axios
                     .get(
-                      "https://github.com/Jaerazone/dogfoodJson.git/shop/data2.json"
+                      "https://my-json-server.typicode.com/Jaerazone/dogfoodJson/food"
                     )
                     .then((결과) => {
-                      console.log(결과.data);
-                      setFood([...food, 결과.data]);
+                      setFood([...food, ...결과.data]); // [...food] food 벗기고 다시 []로 감싸는 복사본
                     })
                     .catch(() => {
                       console.log("실패했습니다");
@@ -136,6 +135,7 @@ function Card(props) {
   return (
     <div className="col-md-4">
       <img src={require(`./img/food${props.sh.id + 1}.jpg`)} width="100%" />
+      {console.log(props.sh.id + 1)}
       <h4>{props.sh.title}</h4>
       <p>{props.sh.content} </p>
       <p>{props.sh.price}</p>
