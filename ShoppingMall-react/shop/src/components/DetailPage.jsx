@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Nav } from "react-bootstrap";
 
 const Box = styled.div`
   padding: 20px;
@@ -28,7 +29,7 @@ const MyAlert2 = styled(MyAlert)`
   color: green;
 `;
 
-const DetailPage = (props) => {
+const DetailPage = ({ food }) => {
   useEffect(() => {
     setTimeout(() => {
       setAlert(false);
@@ -38,15 +39,28 @@ const DetailPage = (props) => {
   const [alert, setAlert] = useState(true);
   const [count, setCount] = useState(0);
   const [inputtext, setInputtext] = useState(0);
+  const [tab, setTab] = useState(0); // 탭버튼이 여러개라서 불린값말고 숫자로줌
+
+  const [fade2, setFade2] = useState("");
+
+  useEffect(() => {
+    let a = setTimeout(() => {
+      setFade2("end");
+    }, 10);
+    return () => {
+      clearTimeout(a);
+      setFade2("");
+    };
+  }, []);
 
   const { id } = useParams();
   console.log(id);
-  const foodItem = props.food.find((item) => item.id == id);
+  const foodItem = food.find((item) => item.id == id);
   console.log(foodItem);
 
   return (
     <div>
-      <div className="container">
+      <div className={`container start ${fade2}`}>
         {alert == true ? (
           <div className="alert alert-warning">2초이내 구매시 할인</div>
         ) : null}
@@ -73,6 +87,7 @@ const DetailPage = (props) => {
               alt=""
               width="50%"
             />
+            {console.log(`foodItem.id: ${foodItem.id}`)}
           </div>
           <div className="col-md-6">
             <h4 className="pt-5">{foodItem.title}</h4>
@@ -99,9 +114,59 @@ const DetailPage = (props) => {
             <YellowBtn bg={"red"}></YellowBtn>
           </div>
         </div>
+        <Nav variant="tabs" defaultActiveKey="link-0">
+          <Nav.Item>
+            <Nav.Link eventKey="link-0" onClick={() => setTab(0)}>
+              Active
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-1" onClick={() => setTab(1)}>
+              Option 1
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-2" onClick={() => setTab(2)}>
+              Option 2
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="disabled" onClick={() => setTab(3)} disabled>
+              Disabled
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <TabContent tab={tab} food={food} />
       </div>
     </div>
   );
 };
+
+function TabContent({ tab, food }) {
+  const [fade, setFade] = useState("");
+
+  useEffect(() => {
+    let a = setTimeout(() => {
+      setFade("end");
+    }, 10);
+    return () => {
+      clearTimeout(a);
+      setFade("");
+    };
+  }, [tab]); // tab이 변경될때마다 클래스명을 부착해줘
+
+  return (
+    <div className={`start ${fade}`}>
+      {
+        [
+          <div>{food[0].title}</div>,
+          <div>내용1</div>,
+          <div>내용2</div>,
+          <div>내용3</div>,
+        ][tab]
+      }
+    </div>
+  );
+}
 
 export default DetailPage;
