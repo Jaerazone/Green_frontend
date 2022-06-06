@@ -6,10 +6,15 @@ import Data from "./data";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import DetailPage from "./components/DetailPage";
 import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
   const [food, setFood] = useState(Data);
   const navigate = useNavigate();
+  const [클릭횟수, 클릭횟수변경] = useState(2);
+  const [alertdata, alertSet] = useState(true);
+
+  useEffect(() => alertSet(true), [클릭횟수]);
 
   return (
     <div className="App">
@@ -78,22 +83,32 @@ function App() {
                   ))}
                 </div>
               </div>
-              <button
-                onClick={() => {
-                  axios
-                    .get(
-                      "https://my-json-server.typicode.com/Jaerazone/dogfoodJson/food"
-                    )
-                    .then((결과) => {
-                      setFood([...food, ...결과.data]); // [...food] food 벗기고 다시 []로 감싸는 복사본
-                    })
-                    .catch(() => {
-                      console.log("실패했습니다");
-                    });
-                }}
-              >
-                버튼
-              </button>
+
+              {클릭횟수 == 4 ? null : (
+                <button
+                  onClick={() => {
+                    // 로딩중UI 띄우기~
+                    alertdata === true ? alert("로딩중입니다.") : null;
+                    axios
+                      .get(
+                        `https://raw.githubusercontent.com/Jaerazone/dogfoodJson/main/data${클릭횟수}.json`
+                      )
+                      .then((결과) => {
+                        setFood([...food, ...결과.data]); // [...food] food 벗기고 다시 []로 감싸는 복사본
+                        클릭횟수변경(클릭횟수 + 1);
+                        console.log(`클릭횟수:${클릭횟수}`);
+                        alertSet(false); // 로딩중이라는 UI 사라지게함
+                      })
+                      .catch(() => {
+                        console.log("실패했습니다");
+                        // 에러나면 로딩중 UI 숨기기~
+                        alertSet(false);
+                      });
+                  }}
+                >
+                  버튼
+                </button>
+              )}
             </>
           }
         />
@@ -138,7 +153,7 @@ function Card(props) {
       {console.log(props.sh.id + 1)}
       <h4>{props.sh.title}</h4>
       <p>{props.sh.content} </p>
-      <p>{props.sh.price}</p>
+      <p>{props.sh.price} 원</p>
     </div>
   );
 }
