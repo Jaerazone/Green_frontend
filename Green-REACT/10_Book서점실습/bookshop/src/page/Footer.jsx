@@ -1,13 +1,12 @@
 import React from "react";
-// import { IconName } from "react-icons/fa";
-// import {
-//     FaFacebookF,
-//     FaTwitterSquare,
-//     FaGoogle,
-//     FaInstagram,
-//     FaLinkedin,
-//     FaGithub,
-// } from "@fortawesome/free-brands-svg-icons";
+import {
+    BsFacebook,
+    BsTwitter,
+    BsGoogle,
+    BsInstagram,
+    BsLinkedin,
+    BsGithub,
+} from "react-icons/bs";
 
 const Footer = () => {
     return (
@@ -23,7 +22,7 @@ const Footer = () => {
                             href="#!"
                             role="button"
                         >
-                            {/* <IconName icon={FaFacebookF} /> */}
+                            <BsFacebook />
                         </a>
 
                         {/* <!-- Twitter --> */}
@@ -32,7 +31,7 @@ const Footer = () => {
                             href="#!"
                             role="button"
                         >
-                            {/* <IconName icon={FaTwitterSquare} /> */}
+                            <BsTwitter />
                         </a>
 
                         {/* <!-- Google --> */}
@@ -41,7 +40,7 @@ const Footer = () => {
                             href="#!"
                             role="button"
                         >
-                            {/* <IconName icon={FaGoogle} /> */}
+                            <BsGoogle />
                         </a>
 
                         {/* <!-- Instagram --> */}
@@ -50,7 +49,7 @@ const Footer = () => {
                             href="#!"
                             role="button"
                         >
-                            {/* <IconName icon={FaInstagram} /> */}
+                            <BsInstagram />
                         </a>
 
                         {/* <!-- Linkedin --> */}
@@ -59,7 +58,7 @@ const Footer = () => {
                             href="#!"
                             role="button"
                         >
-                            {/* <IconName icon={FaLinkedin} /> */}
+                            <BsLinkedin />
                         </a>
 
                         {/* <!-- Github --> */}
@@ -68,7 +67,7 @@ const Footer = () => {
                             href="#!"
                             role="button"
                         >
-                            {/* <IconName icon={FaGithub} /> */}
+                            <BsGithub />
                         </a>
                     </section>
                     {/* <!-- Section: Social media --> */}
