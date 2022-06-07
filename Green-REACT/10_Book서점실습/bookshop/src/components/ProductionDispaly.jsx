@@ -23,11 +23,21 @@ const ProductionDispaly = ({ product }) => {
                     {
                         // data.state.comments의 값을 바로 쓰지말고
                         // product.name값과 comments.product값을 비교해서 들고와야함
+                        // -> filter비교해서 리턴값으로 태그를 넣어서 실행해도되고.. 여러방법있음
                         // 값을 정리해서 쓸때는 Home 화면에서 값을 정리해서 props 값으로 들고와서 사용
 
                         // 아래는 product 값 상관없이 전체 값 들고옴
                         data.state.comments.map((comment) => (
                             <li key={comment.id}>
+                                {/* 코멘트 창에서 사용한 내용을 가져와서 사용 */}
+                                <div
+                                    style={{
+                                        width: "100px",
+                                        height: "50px",
+                                        backgroundSize: "cover",
+                                        backgroundImage: `url(${comment.img})`,
+                                    }}
+                                ></div>
                                 {comment.user} : {comment.text}
                             </li>
                         ))

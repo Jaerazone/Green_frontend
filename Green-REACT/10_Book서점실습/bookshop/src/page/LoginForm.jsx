@@ -17,7 +17,7 @@ const LoginForm = () => {
     };
     // 받아온 값을 버튼을 눌렀을때 data를 통해서 값 할당
     const loginUser = (e) => {
-        e.preventDefalut();
+        e.preventDefalut(); //submit 사용시 새로고침 방지
         data.action.setUser(text); //값을 수정하기위해 action에 접근
         //  '/' 페이지로 이동
         navigate("/");
