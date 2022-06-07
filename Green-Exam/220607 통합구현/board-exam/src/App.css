@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+  background-color: antiquewhite;
+  max-width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.nav_container {
+  width: 100%;
+  background-color: rgb(167, 167, 167);
+}
+.back_btn{
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(149, 195, 255);
+  font-weight: bold;
+  margin: 3px;
+  position: absolute;
+  right: 0;
+}
+
+.back_btn:hover {
+  background-color: rgb(59, 142, 250);
+  color: aliceblue;
+}
+
+
+ul {
+  list-style-type: none;
+  display: inline-flex;
+  padding: 0;
+}
+
+li {
+  margin: 0 15px;
+  border-radius: 5px;
+  background-color: rgb(212, 255, 241);
+  padding: 5px;
+}
+
+li:hover {
+  background-color: rgb(168, 247, 220);
+}
+
+a {
+  text-decoration: none;
+  font-size: large;
+  color: black;
+  font-weight: bold;
+}
