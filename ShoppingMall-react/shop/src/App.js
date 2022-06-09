@@ -7,6 +7,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import DetailPage from "./components/DetailPage";
 import axios from "axios";
 import { useEffect } from "react";
+import Cart from "./page/Cart";
 
 function App() {
   const [food, setFood] = useState(Data);
@@ -31,15 +32,14 @@ function App() {
               >
                 Home
               </Nav.Link>
-              <Nav.Link
-                onClick={() => {
-                  navigate("/detail");
-                }}
-              >
-                Cart
+              <Nav.Link>
+                <Link to="/detail">Detail</Link>
               </Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <Nav.Link>
+                <Link to="/cart">Cart</Link>
+              </Nav.Link>
+              <NavDropdown title="Cart" id="basic-nav-dropdown">
+                <NavDropdown.Item>Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
                 </NavDropdown.Item>
@@ -115,7 +115,7 @@ function App() {
         <Route path="/detail/:id" element={<DetailPage food={food} />} />
         <Route path="*" element={<>없는페이지에요</>} />
 
-        <Route path="/about" element={<About />}>
+        <Route path="/cart" element={<Cart />}>
           <Route path="member" element={<div>멤버임</div>} />
           <Route path="location" element={<div>주소임</div>} />
         </Route>
