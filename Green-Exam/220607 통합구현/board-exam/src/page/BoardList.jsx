@@ -15,18 +15,22 @@ const BoardList = () => {
                 파라미터 및 중첩 라우터를 이용하여 아래 Board의 내용이 보입니다
             </p>
             <ul>
-                {boardlist.map((list, index) => (
-                    <li key={index}>
-                        <NavLink
-                            to={`/boardlist/${list}`}
-                            style={({ isActive }) =>
-                                isActive ? ActiveStyle : undefined
-                            }
-                        >
-                            {list}
-                        </NavLink>
-                    </li>
-                ))}
+                {
+                    // () => ()   ()의 내용이 return
+                    // () => {}   {}의 내용이 실행됨(return이 필요하다면 따로작성)
+                    boardlist.map((list, index) => (
+                        <li key={index}>
+                            <NavLink
+                                to={`/boardlist/${list}`}
+                                style={({ isActive }) =>
+                                    isActive ? ActiveStyle : undefined
+                                }
+                            >
+                                {list}
+                            </NavLink>
+                        </li>
+                    ))
+                }
             </ul>
             <Outlet></Outlet>
         </div>
