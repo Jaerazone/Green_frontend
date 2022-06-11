@@ -15,17 +15,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/cart" element={<Cart />} />
-        </Route>
-        <Route path="/event" element={<Event />}>
-          <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>} />
-          <Route path="two" element={<p>생일기념 쿠폰받기</p>} />
+          <Route path="/event" element={<Event />}>
+            <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>} />
+            <Route path="two" element={<p>생일기념 쿠폰받기</p>} />
+          </Route>
+          <Route path="/about" element={<About />}>
+            <Route path="location" element={<div>주소임</div>} />
+            <Route path="member" element={<div>멤버임</div>} />
+          </Route>
         </Route>
 
         <Route path="*" element={<>없는페이지에요</>} />
-        <Route path="/about" element={<About />}>
-          <Route path="location" element={<div>주소임</div>} />
-          <Route path="member" element={<div>멤버임</div>} />
-        </Route>
       </Routes>
     </div>
   );
