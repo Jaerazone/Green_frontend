@@ -55,7 +55,7 @@ const DetailPage = ({ foods }) => {
 
   const { id } = useParams();
   console.log(`params:${id}`);
-  const foodItem = foods.find((item) => item.id == id);
+  const foodItem = foods.find((food) => food.id == id);
   console.log(foodItem);
 
   return (

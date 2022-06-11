@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 .jumbo__container{
@@ -23,4 +24,17 @@
 .end {
   opacity: 1;
   transition: all 0.5s;
+}
+
+.foods_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+	row-gap: 30px;
+}
+
+
+.foods_list {
+  
+	
 }

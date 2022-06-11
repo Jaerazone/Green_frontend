@@ -5,6 +5,7 @@ import axios from "axios";
 import Card from "../components/Card";
 import Data from "../data";
 import { data } from "../components/Loading";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [foods, setFoods] = useState(Data);
@@ -36,10 +37,12 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="container">
-        <div className="row">
-          {foods.map((food, i) => (
-            <Card key={i} food={food} />
+      <div>
+        <div className="foods_container">
+          {foods.map((food, index) => (
+            <Link className="foods_list" to={`/detail/${food.id}`}>
+              <Card key={index} food={food} />
+            </Link>
           ))}
         </div>
       </div>

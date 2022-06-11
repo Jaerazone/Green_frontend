@@ -1,16 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Card = ({ food }) => {
   return (
-    <div className="col-md-4">
-      <Link to={`/detail/${food.id}`}>
-        <img
-          src={require(`../img/food${food.id + 1}.jpg`)}
-          width="100%"
-          alt="메인 상품 목록"
-        />
-      </Link>
+    <div className>
+      <img
+        src={require(`../img/food${food.id + 1}.jpg`)}
+        width="100%"
+        alt="메인 상품 목록"
+      />
       {console.log(food.id + 1)}
       <h4>{food.title}</h4>
       <p>{food.content} </p>
