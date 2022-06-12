@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import Card from "../components/Card";
-import Data from "../data";
 import { data } from "../components/Loading";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { foodlistAdd } from "./../store/foodsSlice";
 
 const Home = () => {
-  const [foods, setFoods] = useState(Data);
+  const dispatch = useDispatch();
+  const foods = useSelector((state) => state.foods);
   const [클릭횟수, 클릭횟수변경] = useState(2);
   const [alertdata, alertSet] = useState(true);
 
@@ -40,8 +42,8 @@ const Home = () => {
       <div>
         <div className="foods_container">
           {foods.map((food, index) => (
-            <Link className="foods_list" to={`/detail/${food.id}`}>
-              <Card key={index} food={food} />
+            <Link key={index} className="foods_list" to={`/detail/${food.id}`}>
+              <Card food={food} />
             </Link>
           ))}
         </div>
@@ -60,7 +62,7 @@ const Home = () => {
                 `https://raw.githubusercontent.com/Jaerazone/dogfoodJson/main/data${클릭횟수}.json`
               )
               .then((결과) => {
-                setFoods([...foods, ...결과.data]); // [...foods] foods 벗기고 다시 []로 감싸는 복사본
+                dispatch(foodlistAdd(결과.data));
                 클릭횟수변경(클릭횟수 + 1);
                 console.log(`클릭횟수:${클릭횟수}`);
                 alertSet(false); // 로딩중이라는 UI 사라지게함

@@ -14,6 +14,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/detail/:id" element={<DetailPage />} />
+
           <Route path="/cart" element={<Cart />} />
           <Route path="/event" element={<Event />}>
             <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>} />

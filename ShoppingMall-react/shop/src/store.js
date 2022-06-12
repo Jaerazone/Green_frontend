@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import user from "./store/userSlice";
+import foods from "./store/foodsSlice";
 
 const cart = createSlice({
   name: "cart",
@@ -30,5 +31,6 @@ export default configureStore({
     user: user.reducer, // 작명 : user.reducer
     // stock: stock.reducer,
     cart: cart.reducer,
+    foods: foods.reducer,
   },
 });

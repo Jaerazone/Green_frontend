@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Nav } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Box = styled.div`
   padding: 20px;
@@ -29,12 +30,14 @@ const MyAlert2 = styled(MyAlert)`
   color: green;
 `;
 
-const DetailPage = ({ foods }) => {
+const DetailPage = () => {
   useEffect(() => {
     setTimeout(() => {
       setAlert(false);
     }, 2000);
   }, []);
+
+  const foods = useSelector((state) => state.foods);
 
   const [alert, setAlert] = useState(true);
   const [count, setCount] = useState(0);
@@ -55,8 +58,8 @@ const DetailPage = ({ foods }) => {
 
   const { id } = useParams();
   console.log(`params:${id}`);
-  const foodItem = foods.find((food) => food.id == id);
-  console.log(foodItem);
+  const selectItem = foods.find((food) => food.id == id);
+  console.log(selectItem);
 
   return (
     <div>
@@ -83,21 +86,21 @@ const DetailPage = ({ foods }) => {
         <div className="row">
           <div className="col-md-6">
             <img
-              src={require(`../img/food${foodItem.id + 1}.jpg`)}
+              src={require(`../img/food${selectItem.id + 1}.jpg`)}
               alt=""
               width="50%"
             />
-            {console.log(`foodItem.id: ${foodItem.id}`)}
+            {console.log(`foodItem.id: ${selectItem.id}`)}
           </div>
           <div className="col-md-6">
-            <h4 className="pt-5">{foodItem.title}</h4>
-            <p>{foodItem.content}</p>
+            <h4 className="pt-5">{selectItem.title}</h4>
+            <p>{selectItem.content}</p>
             <p>
-              {foodItem.price}원
+              {selectItem.price}원
               {isNaN(inputtext) == true ? (
                 <p>숫자만 입력해주세요</p>
               ) : (
-                `* ${inputtext} 개 = 총 ${foodItem.price * inputtext}원`
+                `* ${inputtext} 개 = 총 ${selectItem.price * inputtext}원`
               )}
             </p>
             <br />

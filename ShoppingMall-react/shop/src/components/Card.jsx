@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ food }) => {
   return (
-    <div className>
+    <div className="">
       <img
         src={require(`../img/food${food.id + 1}.jpg`)}
         width="100%"
