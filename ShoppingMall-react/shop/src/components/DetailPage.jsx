@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Nav } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartAdd } from "../store";
 
 const Box = styled.div`
   padding: 20px;
@@ -38,6 +39,7 @@ const DetailPage = () => {
   }, []);
 
   const foods = useSelector((state) => state.foods);
+  const dispatch = useDispatch();
 
   const [alert, setAlert] = useState(true);
   const [count, setCount] = useState(0);
@@ -112,7 +114,14 @@ const DetailPage = () => {
               }}
             />
             <br />
-            <button className="btn btn-danger">주문하기</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                dispatch(cartAdd());
+              }}
+            >
+              주문하기
+            </button>
             <YellowBtn bg="blue"></YellowBtn>
             <YellowBtn bg={"red"}></YellowBtn>
           </div>

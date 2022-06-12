@@ -22,9 +22,12 @@ const cart = createSlice({
       //state[a.payload].stock = state[a.payload].stock + 1;
       //console.log(state[a.payload].stock);
     },
+    cartAdd(state, action) {
+      console.log("cartAdd");
+    },
   },
 });
-export const { stockAdd } = cart.actions;
+export const { stockAdd, cartAdd } = cart.actions;
 
 export default configureStore({
   reducer: {
