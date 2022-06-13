@@ -14,6 +14,7 @@ const foods = createSlice({
                     commentId: 0,
                     commentUser: "재라",
                     commentText: "강아지가 좋아해요",
+                    commentStar: "",
                 },
                 {
                     commentId: 1,
