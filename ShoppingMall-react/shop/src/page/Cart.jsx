@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
 import { FaWindowClose } from "react-icons/fa";
 import "./Cart.css";
-import { stockAdd } from "./../store";
+import { stockAdd, itemDelete } from "./../store";
 import { changeName, addAge } from "./../store/userSlice";
 
 const Cart = () => {
@@ -56,25 +56,35 @@ const Cart = () => {
                         <tr>
                             <th>사용자이름</th>
                             <th>상품명</th>
-                            <th>수량</th>
                             <th>개당 금액</th>
-                            <th>??전체?</th>
+                            <th>수량</th>
+                            <th>수량추가</th>
+                            <th>제품삭제</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cart.map((cart, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>{cart.name}</td>
-                                <td>{cart.stock}</td>
+                                <td>{cart.title}</td>
                                 <td>{cart.price}</td>
+                                <td>{cart.stock}</td>
                                 <td>
                                     <button
                                         onClick={() => {
                                             dispatch(stockAdd(cart.id));
                                         }}
                                     >
-                                        +
+                                        +++
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() => {
+                                            dispatch(itemDelete(cart.id));
+                                        }}
+                                    >
+                                        XXX
                                     </button>
                                 </td>
                             </tr>
