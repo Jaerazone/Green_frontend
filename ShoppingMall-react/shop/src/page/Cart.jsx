@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 import { FaWindowClose } from "react-icons/fa";
 import "./Cart.css";
 import { stockAdd, itemDelete } from "./../store";
-import { changeName, addAge } from "./../store/userSlice";
+//import { changeName, addAge } from "./../store/userSlice";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Cart = () => {
                 </div>
             </div>
             <div className="">
-                <h6>
+                {/* <h6>
                     {state.user.age}살의 {state.user.name}의 장바구니
                 </h6>
                 <button
@@ -43,14 +43,14 @@ const Cart = () => {
                     }}
                 >
                     나이 파라미터 값대로 더추가
-                </button>
-                <button
+                </button> */}
+                {/* <button
                     onClick={() => {
                         dispatch(changeName());
                     }}
                 >
                     이름변경
-                </button>
+                </button> */}
                 <Table striped bordered hover>
                     <thead>
                         <tr>

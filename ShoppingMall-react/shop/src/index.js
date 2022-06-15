@@ -4,18 +4,23 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+
+// 파이어베이스
+import "./firebase.js";
+
+// 리덕스 툴킷
 import { Provider } from "react-redux";
 import store from "./store.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
-  // </React.StrictMode>
+    // <React.StrictMode>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
+    // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -34,7 +34,11 @@
 }
 
 
-.foods_list {
-  
-	
+.login__register {
+  color: red;
+  background-color: antiquewhite;
+}
+.login_submit {
+  color:red;
+  background-color: antiquewhite;
 }
