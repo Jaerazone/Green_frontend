@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
 import { FaWindowClose } from "react-icons/fa";
 import "./Cart.css";
-import { stockAdd, itemDelete } from "./../store";
+import { stockAdd, itemDelete } from "../store/cartSlice";
 //import { changeName, addAge } from "./../store/userSlice";
 
 const Cart = () => {

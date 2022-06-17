@@ -7,9 +7,12 @@ import { data } from "../components/Loading";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { foodlistAdd } from "./../store/foodsSlice";
+import { selectUser, logout } from "../store/userSlice";
 
 const Home = () => {
     const dispatch = useDispatch();
+    const user = useSelector(selectUser);
+
     const foods = useSelector((state) => state.foods);
     const [클릭횟수, 클릭횟수변경] = useState(2);
     const [alertdata, alertSet] = useState(true);
@@ -18,6 +21,16 @@ const Home = () => {
 
     return (
         <div>
+            <h1>사용자 이름 {user.displayName}</h1>
+            <Button
+                variant="primary"
+                onClick={() => {
+                    dispatch(logout());
+                }}
+            >
+                logout
+            </Button>
+            {console.log(user.displayName)}
             <div className="row">
                 {data.map((loader, i) => (
                     <div

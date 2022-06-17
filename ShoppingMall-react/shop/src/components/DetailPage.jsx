@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../store";
+import { addItem } from "../store/cartSlice";
 import TabContent from "./TabContent";
 
 const Box = styled.div`

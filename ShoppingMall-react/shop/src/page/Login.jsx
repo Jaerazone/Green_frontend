@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { auth } from "../firebase";
 import {
-    auth,
+    signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     updateProfile,
-    signInWithEmailAndPassword,
-} from "../firebase";
+    signInWithPopup,
+    GoogleAuthProvider,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { login } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
+import "./Login.scss";
 
 const Login = () => {
     // 양식 입력에 상태 상수 사용
@@ -86,6 +89,26 @@ const Login = () => {
             });
     };
 
+    const googleSigiIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                dispatch(
+                    login({
+                        email: result.user.email,
+                        uid: result.user.uid,
+                        displayName: result.user.displayName,
+                    })
+                );
+                console.log("구글, 디스패치완료");
+                navigator("/");
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                console.log(error);
+            });
+    };
+
     return (
         <div>
             <div className="login">
@@ -121,7 +144,11 @@ const Login = () => {
                         로그인
                     </button>
                 </form>
-
+            </div>
+            <button className="google_submit" onClick={googleSigiIn}>
+                구글 로그인
+            </button>
+            <div className="register">
                 {/* 회원가입 폼 */}
                 <h1>회원가입이 필요합니다</h1>
                 <form onSubmit={register}>

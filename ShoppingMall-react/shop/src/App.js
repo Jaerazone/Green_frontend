@@ -12,7 +12,8 @@ import Login from "./page/Login";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "./store/userSlice";
-import { auth, onAuthStateChanged } from "./firebase";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
     const user = useSelector(selectUser);
