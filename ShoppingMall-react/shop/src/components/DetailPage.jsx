@@ -64,7 +64,10 @@ const DetailPage = () => {
   console.log(selectItem);
 
   useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify([id]));
+    let 꺼낸스토리지 = localStorage.getItem("watched");
+    꺼낸스토리지 = JSON.parse(꺼낸스토리지)
+    꺼낸스토리지.push(id)
+    localStorage.setItem("watched", JSON.stringify(꺼낸스토리지));
   }, []);
 
   return (
