@@ -74,9 +74,7 @@ const DetailPage = () => {
         <div>
             <div className={`container start ${fade2}`}>
                 {alert == true ? (
-                    <div className="alert alert-warning">
-                        2초이내 구매시 할인
-                    </div>
+                    <div className="alert alert-warning">2초이내 구매시 할인</div>
                 ) : null}
                 {count}
                 <button
@@ -111,9 +109,7 @@ const DetailPage = () => {
                             {isNaN(inputtext) == true ? (
                                 <p>숫자만 입력해주세요</p>
                             ) : (
-                                `* ${inputtext} 개 = 총 ${
-                                    selectItem.price * inputtext
-                                }원`
+                                `* ${inputtext} 개 = 총 ${selectItem.price * inputtext}원`
                             )}
                         </p>
                         <br />
@@ -154,11 +150,7 @@ const DetailPage = () => {
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link
-                            eventKey="disabled"
-                            onClick={() => setTab(3)}
-                            disabled
-                        >
+                        <Nav.Link eventKey="disabled" onClick={() => setTab(3)} disabled>
                             Disabled
                         </Nav.Link>
                     </Nav.Item>
@@ -185,12 +177,9 @@ function TabContent({ tab, foods }) {
     return (
         <div className={`start ${fade}`}>
             {
-                [
-                    <div>{foods[0].title}</div>,
-                    <div>내용1</div>,
-                    <div>내용2</div>,
-                    <div>내용3</div>,
-                ][tab]
+                [<div>{foods[0].title}</div>, <div>내용1</div>, <div>내용2</div>, <div>내용3</div>][
+                    tab
+                ]
             }
         </div>
     );
