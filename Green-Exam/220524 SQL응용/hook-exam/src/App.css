@@ -1,0 +1,59 @@
+.main_section {
+    border: 20px solid rgb(71, 50, 10);
+    border-radius: 5px;
+    background-color: forestgreen;
+    color: white;
+    width: 500px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.contain_section {
+    padding: 20px;
+}
+
+.clock_section {
+    border: 8px dashed whitesmoke;
+    border-radius: 20px;
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;    
+}
+
+.class_section {
+    font-family: "궁서체";
+    font-size: xx-large;
+}
+
+input {
+    margin-top: 20px;
+    font-size: x-large;
+    
+}
+
+input::placeholder {
+    font-size: large;
+    color: rgba(85, 151, 18, 0.7);
+    font-weight: bolder;
+}
+
+button {
+    background-color: antiquewhite;
+    border: 0px ;
+    margin-left: 10px;
+    font-size: x-large;
+    color: rgb(0, 122, 47);
+    border-radius: 5px;
+}
+
+ul {
+    list-style-type: none;
+}
+li{
+    font-size: large;
+}
+
+
