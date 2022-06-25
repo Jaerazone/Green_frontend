@@ -44,26 +44,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //7️⃣ export 써줌 .. 이제 트리거 작업해야한다(8️⃣ todos를 가져와야함- todoList가 처음 로드될때 실행되는게 좋으니, TotoList.js로)
-export const getTodosAsync = createAsyncThunk(
-    "todos/getTodosAsync",
-    async () => {
-        // 1️⃣여기서는 api의 url을 전달할것임
-        const response = await fetch("http://localhost:7000/todos"); // fetch대신 axios.get 사용하면됨! 그러면 json으로 변환할 필요없이 그대로 json형식으로 들어감
-        // 2️⃣만약 응답을 제대로 받았다면,
-        // json 형식으로 변환하고 todos에 할당해준다
-        if (response.ok) {
-            const todos = await response.json(); //fetch는 문자열로들어오기때문에 json으로 무조건 받아줘야함!
-            return { todos }; // 객체형식으로 반환해줄것임
-            // 3️⃣함수가 반환되면, action을 발송할것임
-            // 이경우 우리가 반환하는 것이 무엇이든
-            // 배열에 포함된 객체는 반환될때마다
-            // action.payload가 될것이고, 이것은 액션을 발송하고,
-            // todos 는 payload에 있을것이고 이 모든것은 뒤에서 수행됨
-            // 4️⃣우리는 이제 action과 thunk를 가지고 있으므로
-            // 이 액션을 처리할 레지스터 로직을 구현해야한다!!
-        } // 따라서 Slice로 이동해서 reducer 내에서 추가작업을 해줘야함!(아래로이동)
-    }
-);
+export const getTodosAsync = createAsyncThunk("todos/getTodosAsync", async () => {
+    // 1️⃣여기서는 api의 url을 전달할것임
+    const response = await fetch("http://localhost:7000/todos"); // fetch대신 axios.get 사용하면됨! 그러면 json으로 변환할 필요없이 그대로 json형식으로 들어감
+    // 2️⃣만약 응답을 제대로 받았다면,
+    // json 형식으로 변환하고 todos에 할당해준다
+    if (response.ok) {
+        const todos = await response.json(); //fetch는 문자열로들어오기때문에 json으로 무조건 받아줘야함!
+        return { todos }; // 객체형식으로 반환해줄것임
+        // 3️⃣함수가 반환되면, action을 발송할것임
+        // 이경우 우리가 반환하는 것이 무엇이든
+        // 배열에 포함된 객체는 반환될때마다
+        // action.payload가 될것이고, 이것은 액션을 발송하고,
+        // todos 는 payload에 있을것이고 이 모든것은 뒤에서 수행됨
+        // 4️⃣우리는 이제 action과 thunk를 가지고 있으므로
+        // 이 액션을 처리할 레지스터 로직을 구현해야한다!!
+    } // 따라서 Slice로 이동해서 reducer 내에서 추가작업을 해줘야함!(아래로이동)
+});
 
 // 💌투두 비동기로 추가하기
 export const addTodosAsync = createAsyncThunk(
@@ -84,49 +81,40 @@ export const addTodosAsync = createAsyncThunk(
             const todo = await response.json(); // 이번에는 todos배열이 아니고, 안의 객체라서 todo로 받음
             return { todo }; // extra로 payload 보낸거임!
         }
-    }
+    },
 );
 
 export const toggleCompleteAsync = createAsyncThunk(
     // 1)  async로 todos의 complete를 들고와야하기 때문에 payload 매개변수 써주고, action으로 보내버림(콜백~)
     "todos/toggleCompleteAsync",
     async (payload) => {
-        const response = await fetch(
-            `http://localhost:7000/todos/${payload.id}`,
-            {
-                method: "PATCH", // PATCH는 객체의 id값을 받아와 객체 안의 데이터 '하나'만 수정해줌
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ completed: payload.completed }),
-            }
-        );
+        const response = await fetch(`http://localhost:7000/todos/${payload.id}`, {
+            method: "PATCH", // PATCH는 객체의 id값을 받아와 객체 안의 데이터 '하나'만 수정해줌
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ completed: payload.completed }),
+        });
         if (response.ok) {
             const todo = await response.json();
             return { id: todo.id, completed: todo.completed };
         }
-    }
+    },
 );
 
-export const deleteTodoAsync = createAsyncThunk(
-    "todos/deleteTodoAsync",
-    async (payload) => {
-        const response = await fetch(
-            `http://localhost:7000/todos/${payload.id}`,
-            {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ id: payload.id }),
-            }
-        );
-        if (response.ok) {
-            const todo = await response.json();
-            return { todo };
-        }
+export const deleteTodoAsync = createAsyncThunk("todos/deleteTodoAsync", async (payload) => {
+    const response = await fetch(`http://localhost:7000/todos/${payload.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: payload.id }),
+    });
+    if (response.ok) {
+        const todo = await response.json();
+        return { todo };
     }
-);
+});
 
 const todoSlice = createSlice({
     name: "todos", // action type
@@ -161,9 +149,7 @@ const todoSlice = createSlice({
             // https://redux-toolkit.js.org/usage/immer-reducers#redux-toolkit-and-immer
         },
         toggleComplete: (state, action) => {
-            const index = state.findIndex(
-                (todo) => todo.id === action.payload.id
-            );
+            const index = state.findIndex((todo) => todo.id === action.payload.id);
             state[index].completed = action.payload.completed;
         },
         deleteTodo: (state, action) => {
@@ -197,9 +183,7 @@ const todoSlice = createSlice({
             state.push(action.payload.todo);
         },
         [toggleCompleteAsync.fulfilled]: (state, action) => {
-            const index = state.findIndex(
-                (todo) => todo.id === action.payload.id
-            );
+            const index = state.findIndex((todo) => todo.id === action.payload.id);
             state[index].completed = action.payload.completed;
         },
         [deleteTodoAsync.fulfilled]: (state, action) => {

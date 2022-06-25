@@ -12,14 +12,11 @@ const TodoItem = ({ id, title, completed }) => {
 
     const handleDeleteClick = () => {
         dispatch(deleteTodoAsync({ id: id }));
+        console.log("todoItem 실행");
     };
 
     return (
-        <li
-            className={`list-group-item ${
-                completed && "list-group-item-success"
-            }`}
-        >
+        <li className={`list-group-item ${completed && "list-group-item-success"}`}>
             <div className="d-flex justify-content-between">
                 <span className="d-flex align-items-center">
                     <input
