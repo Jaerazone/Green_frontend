@@ -127,7 +127,7 @@ const todoSlice = createSlice({
         {
             id: 2,
             title: "todo2",
-            completed: false,
+            completed: true,
         },
         {
             id: 3,
