@@ -105,14 +105,14 @@ export const toggleCompleteAsync = createAsyncThunk(
 export const deleteTodoAsync = createAsyncThunk("todos/deleteTodoAsync", async (payload) => {
     const response = await fetch(`http://localhost:7000/todos/${payload.id}`, {
         method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: payload.id }),
+        // headers: {
+        //     "Content-Type": "application/json",
+        // },
+        // body: JSON.stringify({ id: payload.id }),
+        // ✅ 이부분은 주석처리해도됨
     });
     if (response.ok) {
-        const todo = await response.json();
-        return { todo };
+        return { id: payload.id };
     }
 });
 
